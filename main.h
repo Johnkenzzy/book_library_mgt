@@ -28,11 +28,6 @@ typedef struct books
 	struct books *next;
 } book;
 
-typedef struct books_database
-{
-	book *details;
-	struct books_database *next;
-} b_data;
 
 user* add_user();
 user *sign_up();
