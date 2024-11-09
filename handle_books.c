@@ -1,4 +1,4 @@
-#include "main.h"
+#include "library.h"
 
 /**
  * get_book_detail - collects the details of the new book being created
@@ -11,15 +11,15 @@ int get_book_detail(book *new_book)
     printf("\n>>>>>>>>>> Add Book <<<<<<<<<<\n\n");
 
     printf(">>> Book title: ");
-    fgets(new_book->title, MAX_TITLE, stdin);
+    fgets(new_book->title, MAX_INPUT, stdin);
     new_book->title[strcspn(new_book->title, "\n")] = '\0'; 
 
     printf(">>> Author name: ");
-    fgets(new_book->author, MAX_AUTHOR, stdin);
+    fgets(new_book->author, MAX_INPUT, stdin);
     new_book->author[strcspn(new_book->author, "\n")] = '\0';
 
     printf(">>> Book genre: ");
-    fgets(new_book->genre, MAX_GENRE, stdin);
+    fgets(new_book->genre, MAX_INPUT, stdin);
     new_book->genre[strcspn(new_book->genre, "\n")] = '\0';
 
     printf("\nTitle: %s\n", (new_book)->title);
@@ -73,7 +73,7 @@ void print_books(book **books) {
     book *temp = *books;
     int index = 1;
     
-    printf("LIST OF BOOKS IN LIBRARY\n");
+    printf("\n>>>>> LIST OF BOOKS IN LIBRARY <<<<<\n");
     if (temp == NULL)
     {
         printf("\n--> Sorry! You haven't added any books\n... Add some\n");
@@ -82,10 +82,22 @@ void print_books(book **books) {
 
     while (temp != NULL)
     {
-        printf("\n_______________[ %d ]\n", index++);
-        printf("Title: %s\n", temp->title);
-        printf("Author: %s\n", temp->author);
-        printf("Genre: %s\n", temp->genre);
+        print_format(temp, index++);
         temp = temp->next;
     }
+}
+
+
+/**
+ * print_format - Book printing order
+ * @book: Book to print
+ * @index: Index of book in the list of books
+ * Return: Nothing
+*/
+void print_format(book *book, int index)
+{
+        printf("\n_______________[ %d ]\n", index);
+        printf("Title: %s\n", book->title);
+        printf("Author: %s\n", book->author);
+        printf("Genre: %s\n", book->genre);
 }

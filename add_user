@@ -1,0 +1,21 @@
+#include "library.h"
+
+user* add_user()
+{
+	user *new_user = NULL;
+	int i;
+
+	new_user = malloc(sizeof(user));
+	printf("New Username: ");
+	scanf(" %[^\n]", new_user->name);
+	printf("New Password: ");
+	scanf(" %[^\n]", new_user->password);
+
+	/*user->user_id = id;*/
+	/*new_user->borrowed_count = 0;*/
+
+	/*for (i = 0; i < MAX_BORROWED_BOOKS; i++)
+		new_user->borrowed_books[i] = -1;*/
+
+	return (new_user);
+}
