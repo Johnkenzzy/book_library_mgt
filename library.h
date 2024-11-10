@@ -23,6 +23,7 @@ typedef struct books
 	char title[MAX_INPUT];
     char author[MAX_INPUT];
     char genre[MAX_INPUT];
+	struct books *prev;
 	struct books *next;
 } book;
 
@@ -37,6 +38,6 @@ void print_books(book **books_database);
 void print_format(book *book, int index);
 int search_book(book *library, char *search_str, char *search_by, char *search_action);
 void handle_book_search(book *library, char *search_action);
-void delete_format(book *before_book);
+void delete_format(book **library, book **book_to_delete, int match);
 
 #endif /* __LIBRARY_H__ */

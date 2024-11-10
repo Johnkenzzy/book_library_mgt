@@ -10,7 +10,7 @@
 */
 int search_book(book *library, char *search_str, char *search_by, char *search_action)
 {
-    book *curr_book = library, *slow_curr = library;
+    book *curr_book = library;/**slow_curr = library*/
     char *property = NULL;
     int n = 1, match = 0;
 
@@ -27,16 +27,15 @@ int search_book(book *library, char *search_str, char *search_by, char *search_a
             property = curr_book->genre;
         if (strcmp(property, search_str) == 0)
         {
-            if (strcmp(search_action, "print") == 0)
-                print_format(curr_book, ++match);
-        }
-        slow_curr = curr_book;
-        curr_book = curr_book->next;
-        if (strcmp(property, search_str) == 0)
-        {
+            ++match;
             if (strcmp(search_action, "delete") == 0)
-                delete_format(slow_curr);
+            {
+                delete_format(&library, &curr_book, match);
+            }
+            if (strcmp(search_action, "print") == 0)
+                print_format(curr_book, match);
         }
+        curr_book = curr_book->next;
         n++;
     }
     
