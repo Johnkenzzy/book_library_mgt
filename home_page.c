@@ -19,7 +19,8 @@ void homepage(char **user)
         printf("\n... 1: To add a new book");
         printf("\n... 2: To view books");
         printf("\n... 3: To search book");
-        printf("\n... 4: To delete book");
+        printf("\n... 4: Save books to file");
+        printf("\n... 5: To delete book");
         printf("\n... 0: To exit program");
         printf("\n>>> ");
         scanf("%d", &option);
@@ -41,6 +42,11 @@ void homepage(char **user)
             continue;
         }
         else if (option == 4)
+        {
+            save_books_in_file(books_database);
+            continue;
+        }
+        else if (option == 5)
         {
             handle_book_search(books_database, "delete");
             continue;

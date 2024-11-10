@@ -39,5 +39,6 @@ void print_format(book *book, int index);
 int search_book(book *library, char *search_str, char *search_by, char *search_action);
 void handle_book_search(book *library, char *search_action);
 void delete_format(book **library, book **book_to_delete, int match);
+void save_books_in_file(book *library);
 
 #endif /* __LIBRARY_H__ */
