@@ -15,9 +15,11 @@ The Minimal Book Library Management Program is a console-based application writt
 
 ### Program Usage
 To start the program, use the following command:
-``bash
+
+```bash
 ./library
 ```
+
 ### Program Workflow
 
 ```plaintext
