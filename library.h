@@ -4,41 +4,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
+#include <unistd.h>
 
 #define MAX_INPUT 1024
-
 
 typedef struct user
 {
 	char *name;
 	char *password;
 	char *confirm_pass;
+	struct user *next;
 } user;
-
 
 typedef struct books
 {
 	char title[MAX_INPUT];
-    char author[MAX_INPUT];
-    char genre[MAX_INPUT];
+	char author[MAX_INPUT];
+	char genre[MAX_INPUT];
 	struct books *prev;
 	struct books *next;
 } book;
 
-
+/* USER */
 user *sign_up();
+user *login();
 size_t get_input(char **input);
 int input_get_display(user *user_acc);
-int get_book_detail(book *new_book);
+void save_user_binary(const char *filename, user *data_head);
+user *load_user_binary(const char *filename);
+
+/* HOME */
+void homepage(char *user);
+void option_action(int option, book **books_data, const char *file);
+int choose_option(void);
+
+/* BOOKS */
+book *get_book_detail();
 book *add_book(book **books);
-void homepage(char **user);
-void print_books(book **books_database);
+void print_books(book *books_data);
 void print_format(book *book, int index);
-int search_book(book *library, char *search_str, char *search_by, char *search_action);
+int search_book(book *library, char *search_str,
+		char *search_by, char *search_action);
 void handle_book_search(book *library, char *search_action);
 void delete_format(book **library, book **book_to_delete, int match);
-void save_books_in_file(book *library);
+
+/* STORAGE */
+void save_binary(const char *filename, book *data_head);
+book *load_binary(const char *filename);
+
+/* HELPER FUNCTION 1 */
+size_t item_num(book *data);
+
 
 #endif /* __LIBRARY_H__ */

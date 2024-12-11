@@ -6,8 +6,13 @@
  * 
  * Return: 0 if successful, else 1
  */
-int get_book_detail(book *new_book)
+book *get_book_detail()
 {
+    book *new_book = (book *)malloc(sizeof(book));
+
+    if (!new_book)
+        return (NULL);
+
     printf("\n>>>>>>>>>> Add Book <<<<<<<<<<\n\n");
 
     printf(">>> Book title: ");
@@ -26,7 +31,7 @@ int get_book_detail(book *new_book)
     printf("Author: %s\n", (new_book)->author);
     printf("Genre: %s\n", (new_book)->genre);
 
-    return (0);
+    return (new_book);
 }
 
 
@@ -39,15 +44,12 @@ int get_book_detail(book *new_book)
 book *add_book(book **books)
 {
     book *temp;
-    book *new_book = (book *)malloc(sizeof(book));
+    book *new_book = malloc(sizeof(book));
 
-    if (new_book == NULL)
-    {
-        fprintf(stderr, "Memory allocation failed\n");
+    if (!new_book)
         return (NULL);
-    }
 
-    get_book_detail(new_book);
+    new_book = get_book_detail();
     new_book->next = NULL;
 
     if (*books == NULL)
@@ -55,7 +57,7 @@ book *add_book(book **books)
     else
     {
         temp = *books;
-        while (temp->next != NULL)
+        while (temp->next)
         {
             temp = temp->next;
         }
@@ -69,12 +71,13 @@ book *add_book(book **books)
  * print_books - Prints all books in the list
  * @books: Pointer to the head of the book list
  */
-void print_books(book **books) {
-    book *temp = *books;
+void print_books(book *books_data)
+{
+    book *temp = books_data;
     int index = 1;
     
     printf("\n>>>>> LIST OF BOOKS IN LIBRARY <<<<<\n");
-    if (temp == NULL)
+    if (!books_data)
     {
         printf("\n--> Sorry! You haven't added any books\n... Add some\n");
         return;
@@ -101,3 +104,39 @@ void print_format(book *book, int index)
         printf("Author: %s\n", book->author);
         printf("Genre: %s\n", book->genre);
 }
+
+
+/**
+ * reload_books - creates and add new book
+ * @books: books storage data structure
+ * 
+ * Return: pointer to the newly added book
+ */
+/*book *reload_book(book **books, book *each_book)
+{
+    book *temp;
+    book *new_book = (book *)malloc(sizeof(book));
+
+    if (new_book == NULL)
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        return (NULL);
+    }
+
+    new_book = each_book;
+    new_book->next = NULL;
+
+    if (*books == NULL)
+        *books = new_book;
+    else
+    {
+        temp = *books;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = new_book;
+    }
+
+    return (new_book);
+}*/
