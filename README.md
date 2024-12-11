@@ -22,7 +22,7 @@ To start the program, use the following command:
 
 ### Program Workflow
 
-```plaintext
+```shell
 >>>>>>>>>>>>>>> Create an Account <<<<<<<<<<<<<<<
 >>> New Username: John
 >>> New Password: 1234
