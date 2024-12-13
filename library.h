@@ -6,13 +6,13 @@
 #include <string.h>
 #include <unistd.h>
 
-#define MAX_INPUT 1024
+#define MAX_INPUT 100
 
 typedef struct user
 {
-	char *name;
-	char *password;
-	char *confirm_pass;
+	char name[MAX_INPUT];
+	char password[MAX_INPUT];
+	char confirm_pass[MAX_INPUT];
 	struct user *next;
 } user;
 
@@ -28,14 +28,14 @@ typedef struct books
 /* USER */
 user *sign_up();
 user *login();
-size_t get_input(char **input);
+size_t get_input(char *input);
 int input_get_display(user *user_acc);
 void save_user_binary(const char *filename, user *data_head);
 user *load_user_binary(const char *filename);
 
 /* HOME */
-void homepage(char *user);
-void option_action(int option, book **books_data, const char *file);
+int homepage(char *user);
+int option_action(int option, book **books_data, const char *file);
 int choose_option(void);
 
 /* BOOKS */
