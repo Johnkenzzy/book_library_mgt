@@ -10,7 +10,7 @@
 void save_binary(const char *filename, book *data_head)
 {
 	FILE *file = fopen(filename, "wb");
-	book *curr_book, *reload;
+	book *curr_book;
 
 	if (!file)
 		return;
@@ -22,8 +22,7 @@ void save_binary(const char *filename, book *data_head)
 		curr_book = curr_book->next;
 	}
 
-	reload = load_binary(filename);
-	print_books(reload);
+	printf("--> Data saved successfully\n");
 
 	fclose(file);
 }

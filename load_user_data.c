@@ -14,9 +14,9 @@ user *load_user_binary(const char *filename)
 	if (!file)
 		return (NULL);
 
-	while (fread(&temp, sizeof(book), 1, file) == 1)
+	while (fread(&temp, sizeof(user), 1, file) == 1)
 	{
-		new_data = malloc(sizeof(book));
+		new_data = malloc(sizeof(user));
 		if (!new_data)
 		{
 			fclose(file);

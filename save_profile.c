@@ -26,13 +26,11 @@ user *sign_up()
 		else
 		{
 			printf("--> Passwords doesn't match\n");
-			free(new_user_detail);
 			sign_up();
 		}
 	}
 	else
 	{
-		free(new_user_detail);
 		sign_up();
 	}
 

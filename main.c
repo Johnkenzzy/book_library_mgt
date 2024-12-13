@@ -10,7 +10,11 @@ int main(void)
 	else
 		account = login();
 
-	homepage(account->name);
+	if (homepage(account->name) == 0)
+	{
+		exit(EXIT_SUCCESS);
+	}
+
 	free(account);
 	return(0);
 }
